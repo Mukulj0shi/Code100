@@ -1,0 +1,37 @@
+class CarManager(Turtle):
+    def __init__(self):
+        super().__init__()
+        self.x = 265
+        for cars in range(CARS):
+            self.y = random.randint(-300, 300)
+            print(self.y)
+            self.penup()
+            self.shape("square")
+            self.shapesize(1, 2)
+            self.color(random.choice(COLORS))
+            self.goto(self.x, self.y)
+
+
+self.cars = random.randint(1, 3)
+        self.move_x = -10
+        for cars in range(self.cars):
+            turtle = Turtle()
+            self.x = 265
+            self.y = random.randint(-260, 260)
+            print(self.y)
+            turtle.penup()
+            turtle.shape("square")
+            turtle.shapesize(1, 2)
+            turtle.color(random.choice(COLORS))
+            turtle.goto(self.x, self.y)
+            TURTLE_LIST.append(turtle)
+        self.length_list = len(TURTLE_LIST)
+
+       def drivecars(self):
+        for cars in range(self.length_list):
+           TURTLE_LIST[cars].forward(self.move_x)
+
+
+
+ if player.ycor() == carmanager.create_cars().y and carmanager.create_cars().x == 0:
+        print(f"{player.ycor()}   {carmanager.create_cars().y}  {carmanager.create_cars().x}")

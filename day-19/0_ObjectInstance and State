@@ -1,0 +1,11 @@
+
+Instance : We can create multiple object from a class. Each object is called a instance.
+Every instance can have different property(attributes).
+
+State: Different attribute of an object refers to different state.
+State can also refer to two objects doing something.
+
+1) Example object1 has height 6cm while object2 has height of 7cm.
+Both objects have different state in this case.
+
+2) Example object1 is resting while object2 is playing in ground.
