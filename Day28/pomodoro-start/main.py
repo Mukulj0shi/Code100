@@ -10,6 +10,7 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
+rep = 0
 WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
@@ -22,19 +23,56 @@ def reset_timer():
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 def start_timer():
-    minute = 0
-    second = 0
-    count_down(minute, second)
+    min = 9
+    sec = 19
+    count_down(min, sec)
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 
 def count_down(min, sec):
     canvas.itemconfig(timer_text, text=f"{min}:{sec}")
-    if sec <= 59:
-        tk.after(1000, count_down, min, sec + 1)
-    elif sec == 60:
-        tk.after(1000, count_down, min + 1, 0)
+    if min >= 10:
+        if sec >= 10:
+            tk.after(1000, count_down, min, sec-1)
+        elif 10 > sec > 0:
+            canvas.itemconfig(timer_text, text=f"{min}:0{sec}")
+            tk.after(1000, count_down, min, sec - 1)
+        elif sec == 0:
+            canvas.itemconfig(timer_text, text=f"{min}:0{sec}")
+            tk.after(1000, count_down, min-1, 59)
+    elif 10 > min > 0:
+        if sec >= 10:
+            canvas.itemconfig(timer_text, text=f"0{min}:{sec}")
+            tk.after(1000, count_down, min, sec - 1)
+        elif 10 > sec > 0:
+            canvas.itemconfig(timer_text, text=f"0{min}:0{sec}")
+            tk.after(1000, count_down, min, sec - 1)
+        elif sec == 0:
+            canvas.itemconfig(timer_text, text=f"0{min}:0{sec}")
+            tk.after(1000, count_down, min - 1, 59)
+    elif min == 0:
+        if sec >= 10:
+            canvas.itemconfig(timer_text, text=f"0{min}:{sec}")
+            tk.after(1000, count_down, min, sec - 1)
+        elif 10 > sec > 0:
+            canvas.itemconfig(timer_text, text=f"0{min}:0{sec}")
+            tk.after(1000, count_down, min, sec - 1)
+        elif sec == 0:
+            rep += 1
+            if rep == 1 or rep == 3:
+                count_down(4, 59)
+            elif rep == 2 or rep == 4:
+                count_down(9, 59)
+            elif rep == 5:
+                count_down(5, 59)
+
+
+
+
+
+
+
 
 
 # ---------------------------- UI SETUP ------------------------------- #
