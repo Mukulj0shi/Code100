@@ -7,6 +7,17 @@
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
+# Clicking ADD button will call this function.
+def add_data():
+    name_website = website_input.get()
+    name_user = username_input.get()
+    user_password = password_input.get()
+    file = open("confidential.txt", "a")
+    file.write(name_website + " | ")
+    file.write(name_user + " | ")
+    file.write(user_password + "\n")
+    file.close()
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 from tkinter import *
@@ -34,24 +45,24 @@ password_label.grid(row=4, column=0)
 
 # Get input from user using input
 website_input = Entry(width=35, font="Verdana 20 bold")
+website_input.focus()
 website_input.grid(row=2, column=1, columnspan=2)
 
 username_input = Entry(width=35, font="Verdana 20 bold")
+username_input.focus()
 username_input.grid(row=3, column=1, columnspan=2)
 
 password_input = Entry(width=20, font="Verdana 20 bold")
+password_input.focus()
 password_input.grid(row=4, column=1)
 
 
 # Create button
-def generate_pass():
-    pass
 
+#password_button = Button(text="Generate Password", command=generate_pass, font="Verdana 20 bold")
+#password_button.grid(row=4, column=2)
 
-password_button = Button(text="Generate Password", command=generate_pass, font="Verdana 20 bold")
-password_button.grid(row=4, column=2)
-
-add_button = Button(text="Add", command=generate_pass, width=36, font="Verdana 20 bold")
+add_button = Button(text="Add", command=add_data, width=36, font="Verdana 20 bold")
 add_button.grid(row=5, column=1, columnspan=2)
 
 window.mainloop()
