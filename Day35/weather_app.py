@@ -7,6 +7,7 @@ take umbrella.
 """
 
 import requests
+from twilio.rest import Client
 
 api_endpoints = "https://api.openweathermap.org/data/2.5/onecall"
 
@@ -19,9 +20,21 @@ parameters = {
 
 response = requests.get(url=api_endpoints, params=parameters)
 response.raise_for_status()
-#print(response.json())
 hourly_data = response.json()["hourly"]
-#print(hourly_data[0]["weather"][0]["id"])
+
+# This function uses twilio API to send SMS.
+# Client class takes account_sid and auth_token as parameters to be sent.
+def send_message():
+    account_sid = 'AC741ffc69c1685f9cca9463023b9bbef4'
+    auth_token = '8baaedf946572ae1db351708b4a301a2'
+    client = Client(account_sid, auth_token)
+    message = client.messages \
+        .create(
+        body="Take Umbrella it gonna rain today",
+        from_='+12545874434',
+        to='+917406663338'
+    )
+    print(message.status)
 
 will_rain = False
 
@@ -31,5 +44,4 @@ for index_range in range(0, 12):
         will_rain = True
 
 if will_rain == True:
-    print("Take umbrella it can rain")
-
+    send_message()
