@@ -31,8 +31,8 @@ def send_message():
     message = client.messages \
         .create(
         body="Take Umbrella it gonna rain today",
-        from_='+12545874434',
-        to='+917406663338'
+        from_='+1xxxx',
+        to='+1xxxx'
     )
     print(message.status)
 
